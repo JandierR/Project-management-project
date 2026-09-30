@@ -1,16 +1,25 @@
+import ReusableInput from './ReusableInput';
+
 export default function NewProject() {
   return (
-    <ul className="p-4 mt-8 rounded-md bg-stone-100">
-      <img src="public\logo.png" className="w-16 h-16 object-contain mx-auto" />
-      <h2 className="text-xl font-bold text-stone-500 my-4">
-        No Project Selected
-      </h2>
-      <p className="text-stone-400 mb-4">
-        Select a project or get started with a new one
-      </p>
-      <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
-        Create new project
-      </button>
-    </ul>
+    <div className="w-[35rem] mt-16">
+      <menu className="flex items-center justify-end gap-4 my-4">
+        <li className="flex justify-between my-4">
+          <button className="text-stone-700 hover:text-red-500">Cancel</button>
+        </li>
+        <li className="flex justify-between my-4">
+          <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
+            Save
+          </button>
+        </li>
+      </menu>
+      <ReusableInput text="TITLE" type="text" />
+      <ReusableInput text="DESCRIPTION" type="text" />
+      <ReusableInput text="DUE DATE" type="date" />
+    </div>
   );
+
+  /*So here I need to continue to finish the New project component and Reusable input component (check the final result from the video to follow)
+  I'm missing the input tags and the p or h2 titles, so that's what I have to work in for tomorrow Wednesday
+  */
 }

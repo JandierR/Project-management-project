@@ -13,11 +13,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-
-/*Here I need to write the Sidebar code (check the final result from the first lecture in Udemy) 
-    I looked into it and found out the use of <aside>, I don't know how it works, but I can look it up in Google.
-    Also, I saw I can use <nav> for the sidebar items, maybe with <ul> <li>.
-    Tomorrow tuesday, I have to work this feature from the app and make sure its behavior from the final result. 
-    Remember, it is important to make this without help, but it also good to learn while inquiring, in case I'm stuck and don't know how something works
-  
-*/
