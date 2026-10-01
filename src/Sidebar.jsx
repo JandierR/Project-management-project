@@ -13,3 +13,6 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+/*The visual part was finished. Now I just need to add the behavior, 
+so I need to see if this part is from the same lecture or the next, anyways, I have to do it.  */

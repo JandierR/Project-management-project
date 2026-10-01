@@ -13,13 +13,11 @@ export default function NewProject() {
           </button>
         </li>
       </menu>
-      <ReusableInput text="TITLE" type="text" />
-      <ReusableInput text="DESCRIPTION" type="text" />
-      <ReusableInput text="DUE DATE" type="date" />
+      <div>
+        <ReusableInput text="Title" type="text" />
+        <ReusableInput textarea text="Description" type="text" />
+        <ReusableInput text="Due date" type="date" />
+      </div>
     </div>
   );
-
-  /*So here I need to continue to finish the New project component and Reusable input component (check the final result from the video to follow)
-  I'm missing the input tags and the p or h2 titles, so that's what I have to work in for tomorrow Wednesday
-  */
 }
