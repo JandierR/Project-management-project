@@ -1,3 +1,4 @@
+import NoProjectSelected from './NoProjectSelected';
 import NewProject from './NewProject';
 import Sidebar from './Sidebar';
 import { useState } from 'react';
@@ -11,7 +12,12 @@ function App() {
   return (
     <main className="h-screen my-8 flex gap-8">
       <Sidebar onButtonClick={handleShowNewProject} />
-      {showNewProject && <NewProject onButtonClick={handleShowNewProject} />}
+
+      {showNewProject ? (
+        <NewProject onButtonClick={handleShowNewProject} />
+      ) : (
+        <NoProjectSelected onButtonClick={handleShowNewProject} />
+      )}
     </main>
   );
 }
