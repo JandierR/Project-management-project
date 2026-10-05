@@ -1,4 +1,12 @@
-export default function ReusableInput({ text, type, textarea, ...props }) {
+export default function ReusableInput({
+  text,
+  type,
+  textarea,
+  name,
+  handleChange,
+  value,
+  ...props
+}) {
   const classes =
     'w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600';
   return (
@@ -7,9 +15,22 @@ export default function ReusableInput({ text, type, textarea, ...props }) {
         {text}
       </label>
       {textarea ? (
-        <textarea className={classes} {...props} />
+        <textarea
+          onChange={handleChange}
+          name={name}
+          className={classes}
+          value={value}
+          {...props}
+        />
       ) : (
-        <input type={type} className={classes} {...props} />
+        <input
+          onChange={handleChange}
+          name={name}
+          type={type}
+          className={classes}
+          value={value}
+          {...props}
+        />
       )}
     </div>
   );
