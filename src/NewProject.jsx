@@ -37,14 +37,14 @@ export default function NewProject({ onButtonClick }) {
         </menu>
         <div>
           <ReusableInput
-            handleChange={handleChange}
+            onChange={handleChange}
             text="Title"
             type="text"
             name="title"
             value={formData.title}
           />
           <ReusableInput
-            handleChange={handleChange}
+            onChange={handleChange}
             textarea
             text="Description"
             type="text"
@@ -52,7 +52,7 @@ export default function NewProject({ onButtonClick }) {
             value={formData.description}
           />
           <ReusableInput
-            handleChange={handleChange}
+            onChange={handleChange}
             text="Due date"
             type="date"
             name="date"
