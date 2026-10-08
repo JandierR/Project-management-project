@@ -4,21 +4,51 @@ import Sidebar from './Sidebar';
 import { useState } from 'react';
 
 function App() {
-  //The behavior when using this state is that each project has its own id, so when we select a project, that project is going to be shown, instead of NoProjectSelected or NewProject.
-  const [showProject, setShowNewProject] = useState(false);
+  const [projectsState, setProjectsState] = useState({
+    selectedProjectId: undefined,
+    projects: [],
+  });
 
-  const handleShowNewProject = () => {
-    setShowNewProject(!showProject);
-  };
+  function handleStartAddProject() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: null,
+      };
+    });
+  }
+
+  function handleAddProject(projectData) {
+    setProjectsState((prevState) => {
+      const projectId = Math.random();
+      const newProject = {
+        ...projectData,
+        id: projectId,
+      };
+
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
+  let content;
+
+  if (projectsState.selectedProjectId === null) {
+    content = <NewProject onAdd={handleAddProject} />;
+  } else if (projectsState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  }
+
   return (
     <main className="h-screen my-8 flex gap-8">
-      <Sidebar onButtonClick={handleShowNewProject} />
-
-      {showProject ? (
-        <NewProject onButtonClick={handleShowNewProject} />
-      ) : (
-        <NoProjectSelected onButtonClick={handleShowNewProject} />
-      )}
+      <Sidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectsState.projects}
+      />
+      {content}
     </main>
   );
 }
