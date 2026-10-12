@@ -5,10 +5,30 @@ import { useState } from 'react';
 import SelectedProject from './SelectedProject';
 
 function App() {
+  //Parent component
   const [projectsState, setProjectsState] = useState({
+    //Store the projects
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  function handleAddTask(text) {
+    setProjectsState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        project: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+  function handleDeleteTask() {}
 
   function handleCancelAddProject() {
     setProjectsState((prevState) => {
@@ -53,11 +73,31 @@ function App() {
     });
   }
 
+  function handleDeleteProject(projectId) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId,
+        ),
+      };
+    });
+  }
+
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId,
   );
 
-  let content = <SelectedProject project={selectedProject} />;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDeleteProject={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks}
+    />
+  );
 
   if (projectsState.selectedProjectId === null) {
     content = (
@@ -75,7 +115,7 @@ function App() {
       <Sidebar
         onStartAddProject={handleStartAddProject}
         showSelectedProject={handleShowProject}
-        projects={projectsState.projects}
+        projects={projectsState.projects} //Pass projects
       />
       {content}
     </main>

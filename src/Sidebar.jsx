@@ -20,6 +20,7 @@ export default function Sidebar({
       </div>
       <ul className="mt-8">
         {projects.map((project) => {
+          //1
           return (
             <li key={project.id}>
               <button
