@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 // import Task from './Task';
-export default function Tasks({ onAdd, tasks }) {
+export default function Tasks({ onAdd, onDelete, tasks }) {
   const task = useRef();
   const [enteredTask, setEnteredTask] = useState();
 
@@ -39,7 +39,9 @@ export default function Tasks({ onAdd, tasks }) {
             return (
               <li key={task.id} className="flex justify-between my-4">
                 <span>{task.text}</span>
-                <button className="text-stone-700 hover:text-red-500">
+                <button
+                  onClick={() => onDelete(task.id)}
+                  className="text-stone-700 hover:text-red-500">
                   Clear
                 </button>
               </li>
