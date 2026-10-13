@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 // import Task from './Task';
 export default function Tasks({ onAdd, onDelete, tasks }) {
   const task = useRef();
-  const [enteredTask, setEnteredTask] = useState();
+  const [enteredTask, setEnteredTask] = useState('');
 
   function handleChange(event) {
     setEnteredTask(event.target.value);

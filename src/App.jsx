@@ -12,6 +12,9 @@ function App() {
     projects: [],
     tasks: [],
   });
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectId,
+  );
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {
@@ -28,11 +31,11 @@ function App() {
       };
     });
   }
+
   function handleDeleteTask(taskId) {
     setProjectsState((prevState) => {
       return {
         ...prevState,
-        selectedProjectId: prevState.selectedProjectId,
         tasks: prevState.tasks.filter((task) => task.id !== taskId),
       };
     });
@@ -61,6 +64,7 @@ function App() {
       return {
         ...prevState,
         selectedProjectId: selectedProjectId,
+        tasks: prevState.tasks,
       };
     });
   }
@@ -93,8 +97,8 @@ function App() {
     });
   }
 
-  const selectedProject = projectsState.projects.find(
-    (project) => project.id === projectsState.selectedProjectId,
+  const filteredTasks = projectsState.tasks.filter(
+    (task) => task.project === projectsState.selectedProjectId,
   );
 
   let content = (
@@ -103,7 +107,7 @@ function App() {
       onDeleteProject={handleDeleteProject}
       onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
-      tasks={projectsState.tasks}
+      tasks={filteredTasks}
     />
   );
 
